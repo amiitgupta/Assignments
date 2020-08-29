@@ -5,7 +5,16 @@ fetch("https://jsonplaceholder.typicode.com/todos")
 .then(todos=>{console.log(todos[0]);
     let tbody=document.querySelector('table');
     todos.forEach(function(item){
-        let markup=`<tr><td>${item.id}</td><td>${item.title}</td><td>${item.completed}</td></tr>`;
+
+        if(item.completed==true){
+           item.completed="checked";
+        }
+        
+        let markup=`<tr>
+        <td>${item.id}</td>
+        <td>${item.title}</td>
+        <td><input type="checkbox" ${item.completed}></td>
+        </tr>`;
         tbody.insertAdjacentHTML('beforeend', markup);
       });
 
